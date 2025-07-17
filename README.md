@@ -51,7 +51,27 @@ npm run dev
 ```
 ### 📝 使用说明
 **环境变量**
-
+项目使用`.env`文件来管理环境变量`.env.development`和`.env.production`分别对应开发环境和生产环境的变量，`VITE_BASE_API`变量用来对接口请求进行代理，在`vite.config.ts`文件里面修改代理地址：
+```
+server: {
+    host: "0.0.0.0",
+    port: 3000, //本地启动端口
+    proxy: {
+      "/api": {
+        target: "http://example:port", //代理地址
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+```
+axios配置如下：
+```
+export const http = axios.create({
+  baseURL: import.meta.env.VITE_BASE_API, //这里使用了`VITE_BASE_API`变量
+  timeout: 1000 * 60,
+});
+```
 
 ---
 更新中...
