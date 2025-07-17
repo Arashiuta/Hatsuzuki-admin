@@ -1,0 +1,44 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PingFang', sans-serif;
+}
+
+@font-face {
+  font-family: 'PingFang'; /* 自定义字体名称 */
+  src: url('@/font/PingFangSC-Regular.ttf') format('truetype');
+  font-weight: 400; /* Regular 权重 */
+  font-style: normal; /* 正常样式 */
+}
+
+/* 滚动条样式修改 */
+/* 针对 Webkit 浏览器的滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  /* 设置滚动条的宽度，使其更窄 */
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f7f7;
+  /* 轨道背景颜色，可以根据需要调整，使其更浅 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e2e2e2;
+  /* 滚动条滑块的颜色，变浅一些 */
+  border-radius: 4px;
+  /* 可以选择添加圆角 */
+}
+
+/* 鼠标悬停在滑块上时的样式 */
+::-webkit-scrollbar-thumb:hover {
+  background: #b4b4b4;
+  /* 悬停时颜色可以稍微深一点，但仍保持浅色系 */
+}
+
+/* 隐藏滚动条上下箭头 */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
