@@ -45,7 +45,6 @@ http.interceptors.response.use(
       window.location.href = "#/login"; // 直接跳转
       setTimeout(() => {
         loginErrorMessageShown = false;
-        console.log(loginErrorMessageShown);
       }, 2000);
       return;
     }

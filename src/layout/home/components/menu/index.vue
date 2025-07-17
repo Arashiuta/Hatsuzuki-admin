@@ -74,8 +74,6 @@ const getMenuList = () => {
             menuList.value.push(result)
         }
     })
-    console.log('菜单列表:', menuList.value);
-
 }
 
 //获取当前菜单索引

@@ -53,7 +53,6 @@ const loginForm = ref({
 const savePwd = ref(false)
 
 const loginFunc = async () => {
-    console.log('loginForm.value', loginForm.value);
     router.replace({ path: '/home/index' });
     localStorage.setItem('hz_awp', window.btoa(JSON.stringify(loginForm.value)));
     localStorage.setItem('user', JSON.stringify(loginForm.value));
