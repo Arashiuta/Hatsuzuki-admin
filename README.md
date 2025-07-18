@@ -78,7 +78,6 @@ export const http = axios.create({
 > `index.ts`文件内是登录界面和首页的路由，并且可以在此文件内配置路由守卫和修改基础路由配置。
 
 #### 创建一级路由
-
 ```typescript
 {
     path: "/home",
