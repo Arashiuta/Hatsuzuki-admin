@@ -76,8 +76,30 @@ export const http = axios.create({
 左侧菜单会根据路由配置自动创建，路由配置说明如下：
 在`src/router`文件夹下的`routeList.ts`文件内配置路由
 > `index.ts`文件内是登录界面和首页的路由，并且可以在此文件内配置路由守卫和修改基础路由配置。
+
 #### 创建一级路由
 
+```typescript
+{
+    path: "/home",
+    name: "Home",
+    component: DefaultLayoutComponent, //必须要携带此组件
+    meta: {
+      icon: "/menuIcon/welcome.png", //菜单的icon
+    },
+    children: [
+      {
+        path: "index",
+        name: "HomeIndex",
+        component: () => import("@/views/welcome/index.vue"), //路由的页面
+        meta: {
+          title: "首页", //菜单的title
+          showLink: true, //是否展示此菜单
+        },
+      },
+    ],
+  }
+```
 ---
 更新中...
 ---
