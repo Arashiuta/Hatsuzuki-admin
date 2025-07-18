@@ -99,8 +99,42 @@ export const http = axios.create({
     ],
   }
 ```
----
-更新中...
----
+#### 创建二级路由
+```typescript
+ {
+    path: "/form",
+    name: "Form",
+    component: DefaultLayoutComponent, //必须要携带此组件
+    meta: {
+      title: "表单", //折叠菜单标题
+      icon: "/menuIcon/welcome.png", //菜单icon
+    },
+    children: [
+      {
+        path: "index",
+        name: "FormIndex",
+        component: () => import("@/views/form/index.vue"), //菜单组件
+        meta: {
+          title: "报告列表", //菜单标题
+          showLink: true, //是否展示此菜单
+        },
+      },
+      {
+        path: "example",
+        name: "FormExample",
+        component: () => import("@/views/example/index.vue"),
+        meta: {
+          title: "二级路由示例",
+          showLink: true,
+        },
+      },
+    ],
+  },
+```
+### 状态管理
+项目使用[Pinia](https://pinia.vuejs.org/)进行状态管理,在`src/store`目录下管理pinia
+
+# 📄 许可证
+本项目使用 MIT 许可证。详见 [LICENSE](https://github.com/Arashiuta/Hatsuzuki-admin/blob/main/LICENSE) 文件。
 
 
