@@ -18,7 +18,6 @@ export const routes = [
     name: "Home",
     component: DefaultLayoutComponent,
     meta: {
-      title: "首页",
       icon: "/menuIcon/welcome.png",
     },
     children: [
