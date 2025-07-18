@@ -2,7 +2,7 @@
     <hz-dialog ref="dialogRef" title="报告预览" width="1000" style="margin-top: 80px;" @close="closeDialog"
         @confirm="closeDialog">
         <div class="previewBox">
-            <hz-previewPdf ref="previewPdfRef" path=""></hz-previewPdf>
+            <HzPreviewPdf ref="previewPdfRef" path=""></HzPreviewPdf>
         </div>
         <el-form-item label="重新上传报告文档" prop="productName" label-width="100px" label-position="top">
             <el-upload ref="uploadRef" class="upload-demo" name="documents" accept=".doc,.docx" action="#" :limit="1"
@@ -33,6 +33,7 @@
 import { genFileId } from 'element-plus';
 import { ref } from 'vue'
 import { Upload } from '@element-plus/icons-vue'
+import HzPreviewPdf from '@/components/range/hz-previewPdf/index.vue';
 
 
 const emit = defineEmits(['closeDialog'])
