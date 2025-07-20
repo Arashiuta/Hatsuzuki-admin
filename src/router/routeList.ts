@@ -5,7 +5,7 @@ export const routeList = [
   {
     path: "/form",
     name: "Form",
-    component: () => import("@/layout/home/index.vue"),
+    component: DefaultLayoutComponent,
     meta: {
       title: "表单",
       icon: "/menuIcon/welcome.png",

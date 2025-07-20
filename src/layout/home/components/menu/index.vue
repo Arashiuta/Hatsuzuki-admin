@@ -56,7 +56,7 @@ const getMenuList = () => {
             }
             if (item.children && item.children.length === 1) {
                 //创建一级路由
-                result.label = item.meta ? item.meta.title : '未命名一级路由';
+                result.label = item.children[0].meta ? item.children[0].meta.title : '未命名一级路由';
                 result.index = String(menuList.value.length);
                 result.showLink = item.children[0].meta ? item.children[0].meta.showLink !== false : true; //是否显示链接，如果没有设置则默认显示
                 result.icon = item.meta && item.meta.icon ? item.meta.icon : '';

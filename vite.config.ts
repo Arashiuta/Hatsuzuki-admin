@@ -16,6 +16,8 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
+  base:
+    process.env.NODE_ENV === "production" ? "/Hatsuzuki-admin-preview/" : "/", // 设置基础路径
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -23,7 +25,7 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 3000, //本地启动端口
+    port: 3001,
     proxy: {
       "/api": {
         target: "http://example:port", //代理地址

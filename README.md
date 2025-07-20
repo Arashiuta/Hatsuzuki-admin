@@ -12,13 +12,13 @@
 > 写了好多个后台管理项目了，对于较大的项目确实有很多优秀且成熟的管理系统模板，但是对于一些只有几个页面的超小型项目来说还是大材小用了，并且对于ui定制化强一些的项目修改比较困难。<br>
 > 在某次小型管理项目结束后我决定把项目框架留下来作为备用，避免重复造轮子。
 
-## 🚀 快速开始
+# 🚀 快速开始
 **使用你的包管理器进行安装**
 ```
 npm i
 npm run dev
 ```
-### ⚙️ 项目结构
+## ⚙️ 项目结构
 ```txt
 ├── public/                 # 存放静态资源
 ├── src/                    # 项目源码目录
@@ -49,9 +49,97 @@ npm run dev
 ├── tsconfig.node.json      # TypeScript Node.js 环境配置 (通常用于 Vite 配置文件等)
 └── vite.config.ts          # Vite 构建工具的配置文件
 ```
-### 📝 使用说明
-**环境变量**
+## 📝 使用说明
+### 环境变量
+项目使用`.env`文件来管理环境变量`.env.development`和`.env.production`分别对应开发环境和生产环境的变量，`VITE_BASE_API`变量用来对接口请求进行代理，在`vite.config.ts`文件里面修改代理地址：
+```typescript
+server: {
+    host: "0.0.0.0",
+    port: 3000, //本地启动端口
+    proxy: {
+      "/api": {
+        target: "http://example:port", //代理地址
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+```
+axios配置如下：
+```typescript
+export const http = axios.create({
+  baseURL: import.meta.env.VITE_BASE_API, //这里使用了`VITE_BASE_API`变量
+  timeout: 1000 * 60,
+});
+```
+### 路由管理
+左侧菜单会根据路由配置自动创建，路由配置说明如下：
+在`src/router`文件夹下的`routeList.ts`文件内配置路由
+> `index.ts`文件内是登录界面和首页的路由，并且可以在此文件内配置路由守卫和修改基础路由配置。
 
+#### 创建一级路由
+```typescript
+{
+    path: "/home",
+    name: "Home",
+    component: DefaultLayoutComponent, //必须要携带此组件
+    meta: {
+      icon: "/menuIcon/welcome.png", //菜单的icon
+    },
+    children: [
+      {
+        path: "index",
+        name: "HomeIndex",
+        component: () => import("@/views/welcome/index.vue"), //路由的页面
+        meta: {
+          title: "首页", //菜单的title
+          showLink: true, //是否展示此菜单
+        },
+      },
+    ],
+  }
+```
+#### 创建二级路由
+```typescript
+ {
+    path: "/form",
+    name: "Form",
+    component: DefaultLayoutComponent, //必须要携带此组件
+    meta: {
+      title: "表单", //折叠菜单标题
+      icon: "/menuIcon/welcome.png", //菜单icon
+    },
+    children: [
+      {
+        path: "index",
+        name: "FormIndex",
+        component: () => import("@/views/form/index.vue"), //菜单组件
+        meta: {
+          title: "报告列表", //菜单标题
+          showLink: true, //是否展示此菜单
+        },
+      },
+      {
+        path: "example",
+        name: "FormExample",
+        component: () => import("@/views/example/index.vue"),
+        meta: {
+          title: "二级路由示例",
+          showLink: true,
+        },
+      },
+    ],
+  },
+```
+### 状态管理
+项目使用[Pinia](https://pinia.vuejs.org/)进行状态管理,在`src/store`目录下管理pinia
+
+# 🎨 内置组件
+项目内置了一些简单组件可以调用，在`src/components`文件夹查看组件代码。`global`文件夹内为全局注册的组件，可以直接调用，`range`文件夹内的组件需要引入使用
+
+
+## 📄 许可证
+本项目使用 MIT 许可证。详见 [LICENSE](https://github.com/Arashiuta/Hatsuzuki-admin/blob/main/LICENSE) 文件。
 
 ---
 更新中...
