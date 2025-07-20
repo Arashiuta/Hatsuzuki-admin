@@ -5,6 +5,10 @@
   font-family: 'PingFang', sans-serif;
 }
 
+body {
+  color: var(--font-color);
+}
+
 @font-face {
   font-family: 'PingFang'; /* 自定义字体名称 */
   src: url('@/font/PingFangSC-Regular.ttf') format('truetype');

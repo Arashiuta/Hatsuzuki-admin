@@ -2,7 +2,7 @@
     <div class="login-container">
         <!-- 静态网格背景 -->
         <div class="absoluteBg">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <svg class="loginBg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
                         <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#e5e7eb" stroke-width="1" />
@@ -108,20 +108,30 @@ onMounted(() => {
         left: 0;
         width: 100%;
         height: 100%;
+
+        .loginBg {
+            background-color: var(--login-background-color);
+        }
     }
 
     .loginBox {
-        padding: 30px 40px;
-        background-color: #fff;
+        padding: 40px 60px;
+        background-color: var(--login-box-background-color);
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        box-shadow: 1px 1px 20px 2px rgb(233, 233, 233);
+        box-shadow: 1px 1px 20px 2px var(--login-box-shadow-color);
         border-radius: 8px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        /* 应用动画 */
+        animation-name: loginBoxUp;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+
 
         .title {
             display: flex;
@@ -137,7 +147,7 @@ onMounted(() => {
 
             >:nth-child(2) {
                 font-size: 14px;
-                color: #999;
+                color: var(--font-subtitle-color);
             }
         }
 
@@ -162,6 +172,19 @@ onMounted(() => {
                 background-color: #66b1ff;
             }
         }
+    }
+}
+
+// 新增动画
+@keyframes loginBoxUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%); // 从下方开始
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%); // 回到初始居中位置
     }
 }
 </style>

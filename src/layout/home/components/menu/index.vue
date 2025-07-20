@@ -3,8 +3,9 @@
         <div class="menuTitle">
             <span>Hatsuzuki-admin</span>
         </div>
-        <el-menu ref="menuRef" default-active="2" class="el-menu-vertical-demo" background-color="#18171c"
-            text-color="#fff" active-text-color="#fff">
+        <el-menu ref="menuRef" default-active="2" class="el-menu-vertical-demo"
+            background-color="var(--menu-background-color)" text-color="var(--menu-text-color)"
+            active-text-color="var(--menu-active-text-color)">
             <div v-for="(item, index) in menuList" :key="index">
                 <!-- 一级路由 -->
                 <el-menu-item v-if="!item.children && item.showLink" :index="item.index"
@@ -116,7 +117,7 @@ onMounted(() => {
 .menu-container {
     width: 240px;
     padding: 0 10px;
-    background-color: #18171c;
+    background-color: var(--menu-background-color);
 
     .menuTitle {
         display: flex;
@@ -124,7 +125,7 @@ onMounted(() => {
         align-items: center;
         font-size: 22px;
         font-weight: 700;
-        color: #fff;
+        color: var(--menu-title-color);
         padding: 15px 0;
     }
 
@@ -147,12 +148,11 @@ onMounted(() => {
         gap: 10px;
 
         .el-sub-menu__title {
-            background-color: #18171c;
+            background-color: var(--menu-background-color);
         }
 
         .is-active {
-            background-color: #0065ca;
-
+            background-color: var(--menu-active-color);
         }
 
         .el-menu-item {

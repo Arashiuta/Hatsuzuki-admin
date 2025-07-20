@@ -49,7 +49,7 @@ const updateActiveIndexFunc = (payload: { pageIndex: string; pageTitle: string }
     width: 100vw;
     height: 100vh;
     display: flex;
-    background-color: #f7f8fd;
+    background-color: var(--home-background-color);
     position: relative;
 
     .progressBar-container {
@@ -68,7 +68,7 @@ const updateActiveIndexFunc = (payload: { pageIndex: string; pageTitle: string }
             .barFront {
                 width: 0;
                 height: 100%;
-                background-color: #4a90e2;
+                background-color: var(--progress-bar-color);
                 transition: width 0.3s ease-in-out;
             }
         }

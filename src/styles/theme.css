@@ -1,0 +1,18 @@
+:root {
+    /* 全局泛用 */
+    --font-color: #151515; /* 主字体颜色 */
+    --font-subtitle-color: #999; /* 副标题颜色 */
+    --progress-bar-color: #4a90e2; /* 进度条颜色 */
+    /* 登录界面调色 */
+    --login-background-color: #fcfcfc; /* 登录页面背景色 */
+    --login-box-background-color: #fff; /* 登录框背景色 */
+    --login-box-shadow-color: rgba(0, 0, 0, 0.1); /* 登录框阴影 */
+    /* 主界面调色 */
+    --home-background-color: #f7f8fd; /* 主界面背景色 */
+    /* 菜单栏调色 */
+    --menu-background-color: #18171c; /* 菜单栏背景色 */
+    --menu-active-color: #0065ca; /* 菜单栏激活项颜色 */
+    --menu-title-color: #fff; /* 菜单标题颜色 */
+    --menu-text-color: #fff; /* 菜单文字颜色 */
+    --menu-active-text-color: #fff; /* 菜单激活文字颜色 */
+}
