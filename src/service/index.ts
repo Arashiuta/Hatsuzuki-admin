@@ -4,7 +4,7 @@ import { useStore } from "@/store";
 
 export const http = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
-  timeout: 1000 * 10 * 60,
+  timeout: 1000 * 60,
 });
 
 http.interceptors.request.use(

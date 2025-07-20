@@ -23,11 +23,10 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 3000,
+    port: 3000, //本地启动端口
     proxy: {
-      // 完整选项
       "/api": {
-        target: "http://example:port",
+        target: "http://example:port", //代理地址
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
