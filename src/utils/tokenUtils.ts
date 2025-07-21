@@ -12,6 +12,7 @@ const removeTokens = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("expiresIn");
+  localStorage.removeItem("user");
 };
 
 export { setTokens, removeTokens };

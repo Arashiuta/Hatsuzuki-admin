@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
 import { useStore } from "@/store";
+import { removeTokens } from "@/utils/tokenUtils";
 
 export const http = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
@@ -11,7 +12,7 @@ http.interceptors.request.use(
   (config) => {
     const store = useStore();
     store.startProgress();
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -40,8 +41,7 @@ http.interceptors.response.use(
       if (loginErrorMessageShown) return;
       loginErrorMessageShown = true;
       ElMessage.error("登录已过期，请重新登录");
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      removeTokens(); // 清除本地存储的token
       window.location.href = "#/login"; // 直接跳转
       setTimeout(() => {
         loginErrorMessageShown = false;
