@@ -56,14 +56,15 @@ const savePwd = ref(false)
 const loginFunc = async () => {
     const res: any = await loginApi.login(loginForm.value);
     if (res.code == 200) {
+        store.loginExpired = false; // 登录成功，重置登录过期状态
+        setTokens(res.data.accessToken, res.data.refreshToken, res.data.expiresIn);
+        store.setUser(res.data);
         if (savePwd.value) {
             localStorage.setItem('hz_awp', window.btoa(JSON.stringify(loginForm.value)));
         } else {
             localStorage.removeItem('hz_awp');
         }
         localStorage.setItem('user', JSON.stringify(res.data));
-        setTokens(res.data.accessToken, res.data.refreshToken, res.data.expiresIn);
-        store.setUser(res.data);
         ElMessage.success('登录成功');
         router.replace({ path: '/home/index' });
     } else {

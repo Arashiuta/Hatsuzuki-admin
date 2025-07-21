@@ -26,7 +26,6 @@ http.interceptors.request.use(
   }
 );
 
-let loginErrorMessageShown = false;
 http.interceptors.response.use(
   (response) => {
     // 响应数据处理
@@ -38,14 +37,11 @@ http.interceptors.response.use(
     const store = useStore();
     store.finishProgress();
     if (error.status == 422 || error.status == 401) {
-      if (loginErrorMessageShown) return;
-      loginErrorMessageShown = true;
+      if (store.loginExpired) return;
+      store.loginExpired = true; // 设置登录过期状态
       ElMessage.error("登录已过期，请重新登录");
       removeTokens(); // 清除本地存储的token
       window.location.href = "#/login"; // 直接跳转
-      setTimeout(() => {
-        loginErrorMessageShown = false;
-      }, 2000);
       return;
     }
     return Promise.reject(error);

@@ -3,12 +3,14 @@ import { defineStore } from "pinia";
 interface StoreState {
   user: any | null; //用户信息
   pageProgress: number; //页面加载进度
+  loginExpired: boolean; // 登录过期状态
 }
 
 export const useStore = defineStore("store", {
   state: (): StoreState => ({
     user: null,
     pageProgress: 0,
+    loginExpired: false, // 登录过期状态
   }),
 
   actions: {
