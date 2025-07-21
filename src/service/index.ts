@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
 import { useStore } from "@/store";
-import { removeTokens } from "@/utils/tokenUtils";
+import { removeTokens, getAccessToken } from "@/utils/tokenUtils";
 
 export const http = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
@@ -12,7 +12,7 @@ http.interceptors.request.use(
   (config) => {
     const store = useStore();
     store.startProgress();
-    const token = localStorage.getItem("accessToken");
+    const token = getAccessToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -35,7 +35,6 @@ http.interceptors.response.use(
   },
   (error) => {
     const store = useStore();
-    store.finishProgress();
     if (error.status == 422 || error.status == 401) {
       if (store.loginExpired) return;
       store.loginExpired = true; // 设置登录过期状态
@@ -44,6 +43,7 @@ http.interceptors.response.use(
       window.location.href = "#/login"; // 直接跳转
       return;
     }
+    store.finishProgress();
     return Promise.reject(error);
   }
 );

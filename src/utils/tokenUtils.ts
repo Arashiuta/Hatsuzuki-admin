@@ -8,6 +8,14 @@ const setTokens = (
   localStorage.setItem("expiresIn", String(Date.now() + expiresIn * 1000));
 };
 
+const getAccessToken = () => {
+  return localStorage.getItem("accessToken");
+};
+
+const getRefreshToken = () => {
+  return localStorage.getItem("refreshToken");
+};
+
 const removeTokens = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
@@ -15,4 +23,4 @@ const removeTokens = () => {
   localStorage.removeItem("user");
 };
 
-export { setTokens, removeTokens };
+export { setTokens, removeTokens, getAccessToken, getRefreshToken };
