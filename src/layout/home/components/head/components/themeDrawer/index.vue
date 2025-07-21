@@ -1,8 +1,12 @@
 <template>
     <el-drawer v-model="drawerVisible" title="颜色主题" direction="rtl" size="400px">
-        <span>Hi, there!</span>
+        <div class="themeBox">
+            <div class="themeItem" @click="closeDrawer">
+                <img src="" alt="" />
+                <span>经典</span>
+            </div>
+        </div>
     </el-drawer>
-
 </template>
 
 <script setup lang="ts">

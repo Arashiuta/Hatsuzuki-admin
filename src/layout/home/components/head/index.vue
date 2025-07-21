@@ -11,7 +11,7 @@
             <el-dropdown trigger="click">
                 <div class="headBox">
                     <img style="width: 30px;height:30px;border-radius: 50%;" src="/head/head.jpg" alt="">
-                    <span>{{ store.user?.name ? store.user?.name : '初月' }}</span>
+                    <span>{{ store.user?.name ? store.user?.name : 'Hatsuzuki' }}</span>
                     <el-icon>
                         <ArrowDown />
                     </el-icon>
@@ -35,6 +35,7 @@ import { useStore } from '@/store';
 import { ElMessage } from 'element-plus';
 import ThemeDRawer from './components/themeDrawer/index.vue';
 import { ref } from 'vue';
+import { removeTokens } from '@/utils/tokenUtils';
 
 const store = useStore();
 const router = useRouter();
@@ -49,7 +50,7 @@ const props = withDefaults(defineProps<Props>(), {
 const logoutFunc = () => {
     const user = localStorage.getItem('user');
     if (user) {
-        localStorage.removeItem('user');
+        removeTokens()
         store.setUser(null);
         ElMessage.success('退出登录成功');
         router.replace('/login')

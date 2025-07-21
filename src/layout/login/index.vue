@@ -42,6 +42,7 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus';
 import { loginApi } from '@/api/login';
 import { useStore } from '@/store';
+import { setTokens } from '@/utils/tokenUtils.ts';
 
 const store = useStore();
 const router = useRouter();
@@ -53,20 +54,16 @@ const loginForm = ref({
 const savePwd = ref(false)
 
 const loginFunc = async () => {
-    router.replace({ path: '/home/index' });
-    localStorage.setItem('hz_awp', window.btoa(JSON.stringify(loginForm.value)));
-    localStorage.setItem('user', JSON.stringify(loginForm.value));
-    return
     const res: any = await loginApi.login(loginForm.value);
-    if (res.success) {
+    if (res.code == 200) {
         if (savePwd.value) {
             localStorage.setItem('hz_awp', window.btoa(JSON.stringify(loginForm.value)));
         } else {
             localStorage.removeItem('hz_awp');
         }
-        localStorage.setItem('user', JSON.stringify(res.user));
-        localStorage.setItem('token', res.access_token);
-        store.setUser(res.user);
+        localStorage.setItem('user', JSON.stringify(res.data));
+        setTokens(res.data.accessToken, res.data.refreshToken, res.data.expiresIn);
+        store.setUser(res.data);
         ElMessage.success('登录成功');
         router.replace({ path: '/home/index' });
     } else {

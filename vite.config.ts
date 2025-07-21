@@ -28,7 +28,7 @@ export default defineConfig({
     port: 3001,
     proxy: {
       "/api": {
-        target: "http://example:port", //代理地址
+        target: "http://127.0.0.1:3001", //代理地址
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

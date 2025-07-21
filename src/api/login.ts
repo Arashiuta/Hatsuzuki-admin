@@ -3,6 +3,6 @@ import type { LoginParam } from "@/api/login.d";
 
 export const loginApi = {
   login: (data: LoginParam) => {
-    return http.post("/login", data);
+    return http.get("/mock/user.json");
   },
 };
