@@ -16,12 +16,16 @@ export const useStore = defineStore("store", {
       this.user = info;
     },
     getUser() {
+      if (this.user) {
+        return this.user;
+      }
       const userInfo = localStorage.getItem("user");
       if (userInfo) {
         this.user = JSON.parse(userInfo);
       } else {
         this.user = null;
       }
+      return this.user;
     },
     startProgress() {
       this.pageProgress = 20;

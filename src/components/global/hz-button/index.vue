@@ -23,11 +23,11 @@ const opButtonRef = ref<HTMLElement | null>(null);
 const initStyle = () => {
     if (opButtonRef.value) {
         if (props.type === 'primary') {
-            opButtonRef.value.style.backgroundColor = '#0065ca';
-            opButtonRef.value.style.color = '#fff';
+            opButtonRef.value.style.backgroundColor = 'var(--hz-button-primary-background-color)';
+            opButtonRef.value.style.color = 'var(--hz-button-primary-text-color)';
         }
         if (props.type === 'normal') {
-            opButtonRef.value.style.border = '1px solid #e4e4e4';
+            opButtonRef.value.style.border = '1px solid var(--hz-button-normal-border-color)';
         }
         if (props.size === 'large') {
             opButtonRef.value.style.padding = '8px 50px';

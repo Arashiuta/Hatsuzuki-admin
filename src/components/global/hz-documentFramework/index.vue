@@ -54,7 +54,7 @@ const searchFunc = () => {
     overflow: hidden;
 
     .commonBox {
-        background-color: #fff;
+        background-color: var(--hz-documentFramework-commonBox-background-color);
         padding: 15px;
         border-radius: 6px;
     }
@@ -87,14 +87,14 @@ const searchFunc = () => {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 1px solid #c9c9c9;
+                border: 1px solid var(--border-color);
                 border-radius: 5px;
                 padding: 5px 12px;
                 cursor: pointer;
                 transition: all 0.2s ease;
 
                 &:hover {
-                    background-color: #f7f7f7;
+                    filter: brightness(0.8);
                 }
             }
         }

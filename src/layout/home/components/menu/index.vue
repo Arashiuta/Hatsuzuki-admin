@@ -119,11 +119,12 @@ onMounted(() => {
     padding: 0 10px;
     background-color: var(--menu-background-color);
 
+
     .menuTitle {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 700;
         color: var(--menu-title-color);
         padding: 15px 0;
@@ -133,10 +134,12 @@ onMounted(() => {
         display: flex;
         align-items: center;
         gap: 7px;
+        font-size: 15px;
 
         .icon {
             width: 16px;
             height: 16px;
+            color: red;
         }
     }
 
@@ -158,6 +161,12 @@ onMounted(() => {
         .el-menu-item {
             border-radius: 8px;
             height: 40px;
+            font-size: 14px;
+
+            &:hover {
+                background-color: var(--menu-background-hover-color);
+                color: var(--menu-text-hover-color)
+            }
         }
     }
 }

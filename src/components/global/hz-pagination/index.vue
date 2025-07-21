@@ -92,8 +92,8 @@ watchEffect(() => {
 
     :deep(.el-pager) {
         .is-active {
-            color: #000;
-            border: 1px solid #e4e4e4;
+            color: var(--font-color);
+            border: 1px solid var(--border-color);
             border-radius: 4px;
         }
     }

@@ -43,23 +43,23 @@
 
 :deep(.el-select) {
   .el-tag__content {
-    color: #000;
+    color: var(--font-color);
   }
 }
 
 :deep(.el-radio-group) {
   .el-radio {
     :deep(.el-radio__input.is-checked .el-radio__inner) {
-      border-color: #242424;
-      background-color: #242424;
+      border-color: var(--el-redio-color);
+      background-color: var(--el-redio-color);
     }
 
     :deep(.el-radio__label) {
-      color: #242424;
+      color: var(--el-redio-color);
     }
 
     :deep(.is-checked) {
-      color: #242424;
+      color: var(--el-redio-color);
     }
   }
 }

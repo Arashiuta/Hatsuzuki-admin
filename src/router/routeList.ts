@@ -8,7 +8,7 @@ export const routeList = [
     component: DefaultLayoutComponent,
     meta: {
       title: "表单",
-      icon: "/menuIcon/welcome.png",
+      icon: "/menuIcon/form.svg",
     },
     children: [
       {

@@ -1,6 +1,6 @@
 <template>
     <el-dialog v-model="deleteVisible" title="删除" width="450">
-        <div style="color:#000;margin-bottom: 20px;">
+        <div class="content">
             <span v-if="content" v-html="content"></span>
             <slot></slot>
         </div>
@@ -45,6 +45,11 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
+.content {
+    color: var(--font-color);
+    margin-bottom: 20px;
+}
+
 .dialogFooter {
     display: flex;
     justify-content: flex-end;

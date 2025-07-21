@@ -2,17 +2,146 @@
     /* 全局泛用 */
     --font-color: #151515; /* 主字体颜色 */
     --font-subtitle-color: #999; /* 副标题颜色 */
+    --border-color:#e4e4e4; /* 边框颜色 */
     --progress-bar-color: #4a90e2; /* 进度条颜色 */
+    --el-redio-color: #242424; /* 单选框颜色 */
+
     /* 登录界面调色 */
     --login-background-color: #fcfcfc; /* 登录页面背景色 */
     --login-box-background-color: #fff; /* 登录框背景色 */
     --login-box-shadow-color: rgba(0, 0, 0, 0.1); /* 登录框阴影 */
+
     /* 主界面调色 */
     --home-background-color: #f7f8fd; /* 主界面背景色 */
+
     /* 菜单栏调色 */
     --menu-background-color: #18171c; /* 菜单栏背景色 */
-    --menu-active-color: #0065ca; /* 菜单栏激活项颜色 */
     --menu-title-color: #fff; /* 菜单标题颜色 */
     --menu-text-color: #fff; /* 菜单文字颜色 */
+    --menu-background-hover-color: #0b73db; /* 菜单栏悬停背景色 */
+    --menu-text-hover-color: #fcfcfc; /* 菜单栏悬停文字颜色 */
+    --menu-active-color: #0065ca; /* 菜单栏激活项颜色 */
     --menu-active-text-color: #fff; /* 菜单激活文字颜色 */
+    
+    /* header */
+    --header-hover-background-color: #f0f0f0; /* header悬停背景色 */
+
+    /* 自定义组件hz-button */
+    --hz-button-primary-background-color: #0065ca; /* 主按钮颜色 */
+    --hz-button-primary-text-color: #fff; /* 主按钮文字颜色 */
+    --hz-button-normal-border-color: #e4e4e4; /* 次按钮颜色 */
+
+    /* 自定义组件hz-documentFramework */
+    --hz-documentFramework-commonBox-background-color: #fff; /* 通用框背景色 */
+}
+
+.gray-theme {
+    /* 全局泛用 */
+    --font-color: #151515; /* 主字体颜色 */
+    --font-subtitle-color: #999; /* 副标题颜色 */
+    --border-color:#e4e4e4; /* 边框颜色 */
+    --progress-bar-color: #4a90e2; /* 进度条颜色 */
+    --el-redio-color: #242424; /* 单选框颜色 */
+
+    /* 登录界面调色 */
+    --login-background-color: #fcfcfc; /* 登录页面背景色 */
+    --login-box-background-color: #fff; /* 登录框背景色 */
+    --login-box-shadow-color: rgba(0, 0, 0, 0.1); /* 登录框阴影 */
+
+    /* 主界面调色 */
+    --home-background-color: #f7f7f7; /* 主界面背景色 */
+
+    /* 菜单栏调色 */
+    --menu-background-color: #eeeeee; /* 菜单栏背景色 */
+    --menu-title-color: #0c0c0c; /* 菜单标题颜色 */
+    --menu-text-color: #161616; /* 菜单文字颜色 */
+    --menu-background-hover-color: #cecece; /* 菜单栏悬停背景色 */
+    --menu-text-hover-color: #fcfcfc; /* 菜单栏悬停文字颜色 */
+    --menu-active-color: #cecece; /* 菜单栏激活项背景颜色 */
+    --menu-active-text-color: #000000; /* 菜单激活文字颜色 */
+
+    /* header */
+    --header-hover-background-color: #f0f0f0; /* header悬停背景色 */
+
+    /* 自定义组件hz-button */
+    --hz-button-primary-background-color: #0065ca; /* 主按钮颜色 */
+    --hz-button-primary-text-color: #fff; /* 主按钮文字颜色 */
+    --hz-button-normal-border-color: #e4e4e4; /* 次按钮边框颜色 */
+
+    /* 自定义组件hz-documentFramework */
+    --hz-documentFramework-commonBox-background-color: #fff; /* 通用框背景色 */
+}
+
+.red-theme {
+     /* 全局泛用 */
+    --font-color: #151515; /* 主字体颜色 */
+    --font-subtitle-color: #999; /* 副标题颜色 */
+    --border-color:#e4e4e4; /* 边框颜色 */
+    --progress-bar-color: #e42929; /* 进度条颜色 */
+    --el-redio-color: #242424; /* 单选框颜色 */
+
+    /* 登录界面调色 */
+    --login-background-color: #fcfcfc; /* 登录页面背景色 */
+    --login-box-background-color: #fff; /* 登录框背景色 */
+    --login-box-shadow-color: rgba(0, 0, 0, 0.1); /* 登录框阴影 */
+
+    /* 主界面调色 */
+    --home-background-color: #fafafa; /* 主界面背景色 */
+
+    /* 菜单栏调色 */
+    --menu-background-color: #fcfcfc; /* 菜单栏背景色 */
+    --menu-title-color: #0e0e0e; /* 菜单标题颜色 */
+    --menu-text-color: #0e0e0e; /* 菜单文字颜色 */
+    --menu-background-hover-color: #f17474; /* 菜单栏悬停背景色 */
+    --menu-text-hover-color: #ffffff; /* 菜单栏悬停文字颜色 */
+    --menu-active-color: #e42929 ; /* 菜单栏激活项背景颜色 */
+    --menu-active-text-color: #ffffff; /* 菜单激活文字颜色 */
+
+    /* header */
+    --header-hover-background-color: #ebebeb; /* header悬停背景色 */
+
+    /* 自定义组件hz-button */
+    --hz-button-primary-background-color: #e42929; /* 主按钮颜色 */
+    --hz-button-primary-text-color: #fff; /* 主按钮文字颜色 */
+    --hz-button-normal-border-color: #e9e9e9; /* 次按钮边框颜色 */
+
+    /* 自定义组件hz-documentFramework */
+    --hz-documentFramework-commonBox-background-color: #fff; /* 组件内通用框背景色 */
+}
+
+.green-theme {
+     /* 全局泛用 */
+    --font-color: #151515; /* 主字体颜色 */
+    --font-subtitle-color: #999; /* 副标题颜色 */
+    --border-color:#e4e4e4; /* 边框颜色 */
+    --progress-bar-color: #3bc794; /* 进度条颜色 */
+    --el-redio-color: #242424; /* 单选框颜色 */
+
+    /* 登录界面调色 */
+    --login-background-color: #fcfcfc; /* 登录页面背景色 */
+    --login-box-background-color: #fff; /* 登录框背景色 */
+    --login-box-shadow-color: rgba(0, 0, 0, 0.1); /* 登录框阴影 */
+
+    /* 主界面调色 */
+    --home-background-color: #fafafa; /* 主界面背景色 */
+
+    /* 菜单栏调色 */
+    --menu-background-color: #fcfcfc; /* 菜单栏背景色 */
+    --menu-title-color: #0e0e0e; /* 菜单标题颜色 */
+    --menu-text-color: #0e0e0e; /* 菜单文字颜色 */
+    --menu-background-hover-color: #bcecdb; /* 菜单栏悬停背景色 */
+    --menu-text-hover-color: #ffffff; /* 菜单栏悬停文字颜色 */
+    --menu-active-color: #3bc794 ; /* 菜单栏激活项背景颜色 */
+    --menu-active-text-color: #ffffff; /* 菜单激活文字颜色 */
+
+    /* header */
+    --header-hover-background-color: #ebebeb; /* header悬停背景色 */
+
+    /* 自定义组件hz-button */
+    --hz-button-primary-background-color: #32af81; /* 主按钮颜色 */
+    --hz-button-primary-text-color: #fff; /* 主按钮文字颜色 */
+    --hz-button-normal-border-color: #e4e4e4; /* 次按钮边框颜色 */
+
+    /* 自定义组件hz-documentFramework */
+    --hz-documentFramework-commonBox-background-color: #fff; /* 组件内通用框背景色 */
 }
