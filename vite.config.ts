@@ -16,8 +16,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
-  base:
-    process.env.NODE_ENV === "production" ? "/Hatsuzuki-admin-preview/" : "/", // 设置基础路径
+  base: "/Hatsuzuki-admin-preview/", //github预览地址需要设置这个基础路径,不需要设置则删除此行
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
