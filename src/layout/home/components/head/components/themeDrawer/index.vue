@@ -3,8 +3,8 @@
         <div class="themeBox">
             <div v-for="(item, index) in themeList" :key="index" class="themeItem" @click="checkThemeFunc(item.value)">
                 <div class="themeItemImg">
-                    <div :style="{ backgroundColor: item.color }"></div>
-                    <div style="color: #fff;"></div>
+                    <div :style="{ backgroundColor: item.menuColor }"></div>
+                    <div :style="{ backgroundColor: item.mainColor }"></div>
                 </div>
                 <span>{{ item.name }}</span>
             </div>
@@ -25,14 +25,15 @@ const closeDrawer = () => {
 
 interface ThemeItem {
     name: string;
-    color: string;
+    menuColor: string;
+    mainColor: string;
     value: string;
 }
 const themeList: Array<ThemeItem> = [
-    { name: '经典', color: '#000', value: 'hz-theme-normal' },
-    { name: '红色', color: '#e42929', value: 'hz-theme-red' },
-    { name: '绿色', color: '#3bc794', value: 'hz-theme-green' },
-    { name: '灰色', color: '#cecece', value: 'hz-theme-gray' }
+    { name: '经典', menuColor: '#000', mainColor: '#fafafa', value: 'hz-theme-normal' },
+    { name: '红色', menuColor: '#e42929', mainColor: '#fafafa', value: 'hz-theme-red' },
+    { name: '绿色', menuColor: '#3bc794', mainColor: '#fafafa', value: 'hz-theme-green' },
+    { name: '灰色', menuColor: '#cecece', mainColor: '#fafafa', value: 'hz-theme-gray' }
 ];
 
 const checkThemeFunc = (themeNmae: string) => {
