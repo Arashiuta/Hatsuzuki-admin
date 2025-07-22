@@ -35,7 +35,7 @@
     --hz-documentFramework-commonBox-background-color: #fff; /* 通用框背景色 */
 }
 
-.gray-theme {
+.hz-theme-gray {
     /* 全局泛用 */
     --font-color: #151515; /* 主字体颜色 */
     --font-subtitle-color: #999; /* 副标题颜色 */
@@ -72,7 +72,7 @@
     --hz-documentFramework-commonBox-background-color: #fff; /* 通用框背景色 */
 }
 
-.red-theme {
+.hz-theme-red {
      /* 全局泛用 */
     --font-color: #151515; /* 主字体颜色 */
     --font-subtitle-color: #999; /* 副标题颜色 */
@@ -109,7 +109,7 @@
     --hz-documentFramework-commonBox-background-color: #fff; /* 组件内通用框背景色 */
 }
 
-.green-theme {
+.hz-theme-green {
      /* 全局泛用 */
     --font-color: #151515; /* 主字体颜色 */
     --font-subtitle-color: #999; /* 副标题颜色 */

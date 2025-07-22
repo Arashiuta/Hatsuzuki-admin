@@ -1,9 +1,12 @@
 <template>
     <el-drawer v-model="drawerVisible" title="颜色主题" direction="rtl" size="400px">
         <div class="themeBox">
-            <div class="themeItem" @click="closeDrawer">
-                <img src="" alt="" />
-                <span>经典</span>
+            <div v-for="(item, index) in themeList" :key="index" class="themeItem" @click="checkThemeFunc(item.value)">
+                <div class="themeItemImg">
+                    <div :style="{ backgroundColor: item.color }"></div>
+                    <div style="color: #fff;"></div>
+                </div>
+                <span>{{ item.name }}</span>
             </div>
         </div>
     </el-drawer>
@@ -20,10 +23,68 @@ const closeDrawer = () => {
     drawerVisible.value = false;
 };
 
+interface ThemeItem {
+    name: string;
+    color: string;
+    value: string;
+}
+const themeList: Array<ThemeItem> = [
+    { name: '经典', color: '#000', value: 'hz-theme-normal' },
+    { name: '红色', color: '#e42929', value: 'hz-theme-red' },
+    { name: '绿色', color: '#3bc794', value: 'hz-theme-green' },
+    { name: '灰色', color: '#cecece', value: 'hz-theme-gray' }
+];
+
+const checkThemeFunc = (themeNmae: string) => {
+    const html = document.querySelector('html');
+    const theme = localStorage.getItem('theme');
+    if (html) {
+        if (!theme) {
+            html.classList.add(themeNmae);
+            localStorage.setItem('theme', themeNmae);
+        } else {
+            html.classList.remove(theme);
+            html.classList.add(themeNmae);
+            localStorage.setItem('theme', themeNmae);
+        }
+    }
+};
+
 defineExpose({
     openDrawer,
     closeDrawer
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.themeBox {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    .themeItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+
+        .themeItemImg {
+            width: 100%;
+            height: 70px;
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+    }
+}
+</style>
