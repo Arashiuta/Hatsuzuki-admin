@@ -18,7 +18,7 @@ export const routes = [
     name: "Home",
     component: DefaultLayoutComponent,
     meta: {
-      icon: "/menuIcon/welcome.svg",
+      icon: "@/assets/menuIcon/welcome.svg",
     },
     children: [
       {

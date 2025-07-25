@@ -8,16 +8,22 @@
 ---
 
 # ✨ 项目介绍
+
 `Hatsuzuki-admin`是一个轻量化的后台管理系统模板，项目仅做了简单并且基础的封装，项目结构简单，对于项目的定制化修改相当方便
+
 > 在某次小型管理项目结束后我决定把项目框架留下来作为备用，避免重复造轮子。
 
 # 🚀 快速开始
+
 **使用你的包管理器进行安装**
+
 ```
 npm i
 npm run dev
 ```
+
 ## ⚙️ 项目结构
+
 ```txt
 ├── public/                 # 存放静态资源
 ├── src/                    # 项目源码目录
@@ -49,9 +55,13 @@ npm run dev
 ├── tsconfig.node.json      # TypeScript Node.js 环境配置 (通常用于 Vite 配置文件等)
 └── vite.config.ts          # Vite 构建工具的配置文件
 ```
+
 ## 📝 使用说明
+
 ### 环境变量
+
 项目使用`.env`文件来管理环境变量`.env.development`和`.env.production`分别对应开发环境和生产环境的变量，`VITE_BASE_API`变量用来对接口请求进行代理，在`vite.config.ts`文件里面修改代理地址：
+
 ```typescript
 server: {
     host: "0.0.0.0",
@@ -65,26 +75,32 @@ server: {
     },
   },
 ```
-axios配置如下：
+
+axios 配置如下：
+
 ```typescript
 export const http = axios.create({
   baseURL: import.meta.env.VITE_BASE_API, //这里使用了`VITE_BASE_API`变量
   timeout: 1000 * 60,
 });
 ```
+
 ### 路由管理
+
 左侧菜单会根据路由配置自动创建，路由配置说明如下：
 在`src/router`文件夹下的`routeList.ts`文件内配置路由
+
 > `index.ts`文件内是登录界面和首页的路由，并且可以在此文件内配置路由守卫和修改基础路由配置。
 
 #### 创建一级路由
+
 ```typescript
 {
     path: "/home",
     name: "Home",
     component: DefaultLayoutComponent, //必须要携带此组件
     meta: {
-      icon: "/menuIcon/welcome.png", //菜单的icon
+      icon: "@/assets/menuIcon/welcome.png", //菜单的icon
     },
     children: [
       {
@@ -99,7 +115,9 @@ export const http = axios.create({
     ],
   }
 ```
+
 #### 创建二级路由
+
 ```typescript
  {
     path: "/form",
@@ -107,7 +125,7 @@ export const http = axios.create({
     component: DefaultLayoutComponent, //必须要携带此组件
     meta: {
       title: "表单", //折叠菜单标题
-      icon: "/menuIcon/welcome.png", //菜单icon
+      icon: "@/assets/menuIcon/welcome.png", //菜单icon
     },
     children: [
       {
@@ -131,18 +149,19 @@ export const http = axios.create({
     ],
   },
 ```
+
 ### 状态管理
-项目使用[Pinia](https://pinia.vuejs.org/)进行状态管理,在`src/store`目录下管理pinia
+
+项目使用[Pinia](https://pinia.vuejs.org/)进行状态管理,在`src/store`目录下管理 pinia
 
 # 🎨 内置组件
+
 项目内置了一些简单组件可以调用，在`src/components`文件夹查看组件代码。`global`文件夹内为全局注册的组件，可以直接调用，`range`文件夹内的组件需要引入使用
 
-
 ## 📄 许可证
+
 本项目使用 MIT 许可证。详见 [LICENSE](https://github.com/Arashiuta/Hatsuzuki-admin/blob/main/LICENSE) 文件。
 
 ---
-更新中...
----
 
-
+## 更新中...

@@ -6,11 +6,11 @@
         </div>
         <div class="userHead">
             <div class="themeBtn" title="主题" @click="openThemeDrawerFunc">
-                <img src="/head/theme.svg" alt="">
+                <img src="@/assets/head/theme.svg" alt="">
             </div>
             <el-dropdown trigger="click">
                 <div class="headBox">
-                    <img style="width: 30px;height:30px;border-radius: 50%;" src="/head/head.jpg" alt="">
+                    <img style="width: 30px;height:30px;border-radius: 50%;" src="@/assets/head/head.jpg" alt="">
                     <span>{{ store.user?.name ? store.user?.name : 'Hatsuzuki' }}</span>
                     <el-icon>
                         <ArrowDown />
