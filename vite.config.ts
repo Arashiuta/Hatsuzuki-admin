@@ -16,7 +16,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
-  base: "/Hatsuzuki-admin-preview/", //github预览地址需要设置这个基础路径,不需要设置则删除此行
+  // base: "/Hatsuzuki-admin-preview/", //github预览地址需要设置这个基础路径,不需要设置则删除此行
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
