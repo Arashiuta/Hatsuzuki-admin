@@ -1,5 +1,5 @@
 <template>
-    <div class="documentFramework-container">
+    <div class="tableFramework-container">
         <div v-if="$slots.screen" class="commonBox optionBox">
             <div class="screenBox">
                 <!-- 筛选选项 -->
@@ -46,7 +46,7 @@ const searchFunc = () => {
 </script>
 
 <style scoped lang="scss">
-.documentFramework-container {
+.tableFramework-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -54,7 +54,7 @@ const searchFunc = () => {
     overflow: hidden;
 
     .commonBox {
-        background-color: var(--hz-documentFramework-commonBox-background-color);
+        background-color: var(--hz-tableFramework-commonBox-background-color);
         padding: 15px;
         border-radius: 6px;
     }

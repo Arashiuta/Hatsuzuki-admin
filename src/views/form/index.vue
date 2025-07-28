@@ -1,6 +1,6 @@
 <template>
     <div class="taskList-container">
-        <hz-documentFramework @reset="resetButtonFunc" @search="searchFunc">
+        <hz-tableFramework @reset="resetButtonFunc" @search="searchFunc">
             <template #screen>
                 <el-form-item label="项目名称">
                     <el-input v-model="screen.keyword" maxlength="99" placeholder="请输入" />
@@ -111,7 +111,7 @@
                 </el-table>
                 <hz-pagination v-model:currentPage="screen.page" v-model:pageSize="screen.limit" :total="total" />
             </template>
-        </hz-documentFramework>
+        </hz-tableFramework>
 
         <AddDialog ref="addDialogRef" :dialogVisible="dialogVisible" :data="reportTemplateList"
             @addSuccess="addSuccessFunc">

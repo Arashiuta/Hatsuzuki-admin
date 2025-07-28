@@ -34,9 +34,9 @@ declare module 'vue' {
     HzButton: typeof import('./src/components/global/hz-button/index.vue')['default']
     HzDeleteDialog: typeof import('./src/components/global/hz-deleteDialog/index.vue')['default']
     HzDialog: typeof import('./src/components/global/hz-dialog/index.vue')['default']
-    HzDocumentFramework: typeof import('./src/components/global/hz-documentFramework/index.vue')['default']
     HzPagination: typeof import('./src/components/global/hz-pagination/index.vue')['default']
     HzPreviewPdf: typeof import('./src/components/range/hz-previewPdf/index.vue')['default']
+    HzTableFramework: typeof import('./src/components/global/hz-tableFramework/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
