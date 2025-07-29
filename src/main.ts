@@ -11,16 +11,14 @@ import "@/styles/theme.css";
 import hzTableFramework from "./components/global/hz-tableFramework/index.vue";
 import hzButton from "./components/global/hz-button/index.vue";
 import hzPagination from "./components/global/hz-pagination/index.vue";
-import hzDeleteDialog from "./components/global/hz-deleteDialog/index.vue";
 import hzDialog from "./components/global/hz-dialog/index.vue";
 
 const app = createApp(App);
 const pinia = createPinia();
 
-app.component("hz-tableFramework", hzTableFramework);
+app.component("hz-table-framework", hzTableFramework);
 app.component("hz-button", hzButton);
 app.component("hz-pagination", hzPagination);
-app.component("hz-deleteDialog", hzDeleteDialog);
 app.component("hz-dialog", hzDialog);
 
 app.use(router);

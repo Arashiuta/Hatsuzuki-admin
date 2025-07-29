@@ -1,6 +1,6 @@
 <template>
     <div class="taskList-container">
-        <hz-tableFramework v-model:currentPage="screen.current" v-model:pageSize="screen.size" :total="total"
+        <hz-table-framework v-model:currentPage="screen.current" v-model:pageSize="screen.size" :total="total"
             @changePage="changePageFunc" @reset="resetButtonFunc" @search="searchFunc">
             <template #screen>
                 <el-form-item label="项目名称">
@@ -110,14 +110,18 @@
                     </el-table-column>
                 </el-table>
             </template>
-        </hz-tableFramework>
+        </hz-table-framework>
 
         <AddDialog ref="addDialogRef" :dialogVisible="dialogVisible" :data="reportTemplateList"
             @addSuccess="addSuccessFunc">
         </AddDialog>
 
         <!-- 删除事件 -->
-        <hz-deleteDialog ref="deleteDialogRef" @confirm="confimDelete"></hz-deleteDialog>
+        <hz-dialog ref="deleteDialogRef" width="400" title="删除项目" @confirm="confimDelete">
+            <template #default>
+                <div style="margin-top: 10px" v-html="deleteInfo"></div>
+            </template>
+        </hz-dialog>
 
         <!-- 报告预览 -->
         <PreviewDialog ref="previewRef"></PreviewDialog>
@@ -284,8 +288,8 @@ const editFunc = (row: any) => {
 const deleteInfo = ref('')
 const deleteDialogRef = ref()
 const deleteFunc = (info: string) => {
-    deleteInfo.value = info
-    deleteDialogRef.value.openDialog(`确认要删除 <strong>${info}</strong> 项目吗？`);
+    deleteInfo.value = `确认要删除 <strong>${info}</strong> 项目吗？`
+    deleteDialogRef.value.openDialog();
 }
 const confimDelete = async () => {
     deleteDialogRef.value.closeDialog();

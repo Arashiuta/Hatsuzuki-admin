@@ -14,11 +14,13 @@ import { ref, toRefs } from 'vue';
 interface Props {
     closeText?: string;
     confirmText?: string;
+    showFooter?: boolean;
     disabled?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
     closeText: '取消',
     confirmText: '确认',
+    showFooter: true,
     disabled: false
 })
 const { closeText, confirmText, disabled } = toRefs(props);
@@ -34,6 +36,7 @@ const closeDialog = () => {
 
 
 const closeFunc = () => {
+    closeDialog()
     emit('close')
 }
 const confirmFunc = () => {
@@ -51,5 +54,6 @@ defineExpose({
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    margin-top: 20px;
 }
 </style>

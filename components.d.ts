@@ -32,7 +32,6 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     HzButton: typeof import('./src/components/global/hz-button/index.vue')['default']
-    HzDeleteDialog: typeof import('./src/components/global/hz-deleteDialog/index.vue')['default']
     HzDialog: typeof import('./src/components/global/hz-dialog/index.vue')['default']
     HzPagination: typeof import('./src/components/global/hz-pagination/index.vue')['default']
     HzPreviewPdf: typeof import('./src/components/range/hz-previewPdf/index.vue')['default']
