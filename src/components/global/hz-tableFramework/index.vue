@@ -1,6 +1,7 @@
 <template>
     <div class="tableFramework-container">
-        <div v-if="$slots.screen" class="commonBox optionBox">
+        <slot name="operation"></slot>
+        <div v-if="!$slots.operation" class="commonBox optionBox">
             <div class="screenBox">
                 <!-- 筛选选项 -->
                 <slot name="screen"></slot>
@@ -23,6 +24,8 @@
         <!-- 主体 -->
         <div v-if="$slots.default" class="commonBox defaultBox">
             <slot></slot>
+            <hz-pagination v-model:currentPage="propInfo.currentPage" v-model:pageSize="propInfo.pageSize"
+                :total="propInfo.total" @change="changePageFunc" />
         </div>
         <!-- footer -->
         <div v-if="$slots.footer" class="commonBox">
@@ -34,8 +37,34 @@
 <script setup lang="ts">
 import { RefreshRight } from '@element-plus/icons-vue';
 import { Search } from '@element-plus/icons-vue';
+import { ref, watchEffect } from 'vue';
 
-const emit = defineEmits(['search', 'reset']);
+const emit = defineEmits(['search', 'reset', 'update:currentPage', 'update:pageSize', 'changePage']);
+interface Props {
+    currentPage: number;
+    pageSize: number;
+    total: number;
+    pageCapacity?: Array<number>;
+}
+const props = withDefaults(defineProps<Props>(), {
+    pageCapacity: () => [20, 30, 50]
+});
+const propInfo = ref({
+    currentPage: props.currentPage,
+    pageSize: props.pageSize,
+    total: props.total,
+    pageCapacity: props.pageCapacity
+})
+watchEffect(() => {
+    propInfo.value.currentPage = props.currentPage;
+    propInfo.value.pageSize = props.pageSize;
+    propInfo.value.total = props.total;
+})
+const changePageFunc = (currentPage: number, pageSize: number) => {
+    emit('update:currentPage', currentPage);
+    emit('update:pageSize', pageSize);
+    emit('changePage', currentPage, pageSize);
+}
 
 const resetFunc = () => {
     emit('reset');

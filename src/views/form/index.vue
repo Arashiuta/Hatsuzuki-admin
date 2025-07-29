@@ -1,6 +1,7 @@
 <template>
     <div class="taskList-container">
-        <hz-tableFramework @reset="resetButtonFunc" @search="searchFunc">
+        <hz-tableFramework v-model:currentPage="screen.current" v-model:pageSize="screen.size" :total="total"
+            @changePage="changePageFunc" @reset="resetButtonFunc" @search="searchFunc">
             <template #screen>
                 <el-form-item label="项目名称">
                     <el-input v-model="screen.keyword" maxlength="99" placeholder="请输入" />
@@ -89,8 +90,7 @@
                                     style="margin: 0;">
                                     编辑
                                 </el-button>
-                                <el-button type="primary" link @click="deleteFunc(row.project_name, row.id)"
-                                    style="margin: 0;">
+                                <el-button type="primary" link @click="deleteFunc(row.project_name)" style="margin: 0;">
                                     删除
                                 </el-button>
                                 <el-button v-if="row.status == '7'" type="primary" link @click="approvalFunc(row)"
@@ -109,7 +109,6 @@
                         </template>
                     </el-table-column>
                 </el-table>
-                <hz-pagination v-model:currentPage="screen.page" v-model:pageSize="screen.limit" :total="total" />
             </template>
         </hz-tableFramework>
 
@@ -144,8 +143,8 @@ import { ElMessage } from 'element-plus';
 
 const screenTimeRange = ref([])
 const screen = ref({
-    page: 1,
-    limit: 20,
+    current: 1,
+    size: 20,
     keyword: '',
     status: '',
     start_time: '',
@@ -161,12 +160,12 @@ const resetButtonFunc = () => {
 }
 
 const searchFunc = () => {
-    screen.value.page = 1;
+    screen.value.current = 1;
 }
 
 const resetScreen = () => {
     screenTimeRange.value = [];
-    screen.value.page = 1;
+    screen.value.current = 1;
     screen.value.keyword = '';
     screen.value.status = '';
     screen.value.start_time = '';
@@ -258,6 +257,13 @@ const tableData = ref<any>([
 const reportTemplateList = ref<Array<any>>([])
 const total = ref(tableData.value.length);
 
+const changePageFunc = (currentPage: number, pageSize: number) => {
+    screen.value.current = currentPage;
+    screen.value.size = pageSize;
+    // 这里可以添加逻辑来处理分页数据
+    console.log(`当前页: ${currentPage}, 每页条数: ${pageSize}`);
+}
+
 
 // 添加弹窗
 const dialogVisible = ref(false);
@@ -277,12 +283,9 @@ const editFunc = (row: any) => {
 // 删除
 const deleteInfo = ref('')
 const deleteDialogRef = ref()
-const deleteStatus = ref(false)
-let deleteId = 0; // 用于存储要删除的任务ID
-const deleteFunc = (info: string, id: number) => {
+const deleteFunc = (info: string) => {
     deleteInfo.value = info
     deleteDialogRef.value.openDialog(`确认要删除 <strong>${info}</strong> 项目吗？`);
-    deleteId = id; // 保存要删除的任务ID
 }
 const confimDelete = async () => {
     deleteDialogRef.value.closeDialog();

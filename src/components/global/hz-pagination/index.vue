@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 interface Props {
     currentPage: number;
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:currentPage', 'update:pageSize', 'change']);
 
-const propInfo = reactive({
+const propInfo = ref({
     currentPage: props.currentPage,
     pageSize: props.pageSize,
     total: props.total,
@@ -32,12 +32,12 @@ const propInfo = reactive({
 const changeFunc = (currentPage: number, pageSize: number) => {
     emit('update:currentPage', currentPage);
     emit('update:pageSize', pageSize);
-    emit('change', { currentPage, pageSize });
+    emit('change', currentPage, pageSize);
 }
 watchEffect(() => {
-    propInfo.currentPage = props.currentPage;
-    propInfo.pageSize = props.pageSize;
-    propInfo.total = props.total;
+    propInfo.value.currentPage = props.currentPage;
+    propInfo.value.pageSize = props.pageSize;
+    propInfo.value.total = props.total;
 })
 
 </script>
