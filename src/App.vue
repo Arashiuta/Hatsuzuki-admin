@@ -80,12 +80,6 @@ watch(() => store.pageProgress, (newVal: number) => {
   .el-dialog__header {
     font-weight: 700;
   }
-
-  .footer {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-  }
 }
 
 /* 全局修改el-select */

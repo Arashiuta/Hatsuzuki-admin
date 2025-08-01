@@ -1,7 +1,7 @@
 <template>
     <el-dialog v-model="dialogVisible">
         <slot></slot>
-        <div class="dialogFooter">
+        <div v-if="props.showFooter" class="dialogFooter">
             <hz-button :size="'large'" :type="'normal'" @click="closeFunc">{{ closeText }}</hz-button>
             <hz-button :size="'large'" :disabled="disabled" @click="confirmFunc">{{ confirmText }}</hz-button>
         </div>
