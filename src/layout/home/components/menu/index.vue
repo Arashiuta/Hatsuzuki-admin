@@ -115,7 +115,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .menu-container {
-    width: 240px;
+    width: 220px;
     padding: 0 10px;
     background-color: var(--menu-background-color);
 
