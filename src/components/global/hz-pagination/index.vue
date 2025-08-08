@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { ref, watch } from 'vue';
 
 interface Props {
     currentPage: number;
@@ -34,11 +34,15 @@ const changeFunc = (currentPage: number, pageSize: number) => {
     emit('update:pageSize', pageSize);
     emit('change', currentPage, pageSize);
 }
-watchEffect(() => {
-    propInfo.value.currentPage = props.currentPage;
-    propInfo.value.pageSize = props.pageSize;
-    propInfo.value.total = props.total;
-})
+watch(
+    () => [props.currentPage, props.pageSize, props.total],
+    ([currentPage, pageSize, total]) => {
+        propInfo.value.currentPage = currentPage;
+        propInfo.value.pageSize = pageSize;
+        propInfo.value.total = total;
+    }
+);
+
 
 </script>
 

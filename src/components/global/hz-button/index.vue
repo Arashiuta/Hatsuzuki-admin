@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 interface OpButtonProps {
     type?: 'primary' | 'normal';
@@ -36,18 +36,23 @@ const initStyle = () => {
     }
 }
 
-watchEffect(() => {
-    if (props.disabled && opButtonRef.value) {
-        opButtonRef.value.style.opacity = '0.5';
-        opButtonRef.value.style.pointerEvents = 'none';
-        opButtonRef.value.style.cursor = 'not-allowed';
-    }
-    if (!props.disabled && opButtonRef.value) {
-        opButtonRef.value.style.opacity = '1';
-        opButtonRef.value.style.pointerEvents = 'auto';
-        opButtonRef.value.style.cursor = 'pointer';
-    }
-})
+watch(
+    () => props.disabled,
+    (disabled) => {
+        if (opButtonRef.value) {
+            if (disabled) {
+                opButtonRef.value.style.opacity = '0.5';
+                opButtonRef.value.style.pointerEvents = 'none';
+                opButtonRef.value.style.cursor = 'not-allowed';
+            } else {
+                opButtonRef.value.style.opacity = '1';
+                opButtonRef.value.style.pointerEvents = 'auto';
+                opButtonRef.value.style.cursor = 'pointer';
+            }
+        }
+    },
+    { immediate: true }
+);
 
 onMounted(() => {
     initStyle()

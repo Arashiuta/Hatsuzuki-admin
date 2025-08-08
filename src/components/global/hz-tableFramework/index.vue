@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import { RefreshRight } from '@element-plus/icons-vue';
 import { Search } from '@element-plus/icons-vue';
-import { ref, watchEffect } from 'vue';
+import { ref, watch } from 'vue';
 
 const emit = defineEmits(['search', 'reset', 'update:currentPage', 'update:pageSize', 'changePage']);
 interface Props {
@@ -55,11 +55,15 @@ const propInfo = ref({
     total: props.total,
     pageCapacity: props.pageCapacity
 })
-watchEffect(() => {
-    propInfo.value.currentPage = props.currentPage;
-    propInfo.value.pageSize = props.pageSize;
-    propInfo.value.total = props.total;
-})
+
+watch(
+    () => [props.currentPage, props.pageSize, props.total],
+    ([currentPage, pageSize, total]) => {
+        propInfo.value.currentPage = currentPage;
+        propInfo.value.pageSize = pageSize;
+        propInfo.value.total = total;
+    }
+);
 const changePageFunc = (currentPage: number, pageSize: number) => {
     emit('update:currentPage', currentPage);
     emit('update:pageSize', pageSize);
