@@ -38,7 +38,7 @@
 import { onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { routes } from '@/router';
-import type { MenuItem, RouteItem } from '@/layout/home/components/menu/modules/types';
+import type { MenuItem, RouteItem } from './types';
 
 const router = useRouter();
 const emit = defineEmits(['updateActiveIndex']); //菜单修改

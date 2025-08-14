@@ -1,5 +1,5 @@
 import { http } from "@/service/index.ts";
-import type { LoginParam } from "@/api/login.d";
+import type { LoginParam } from "./types/login.ts";
 
 export const loginApi = {
   login: (data: LoginParam) => {
