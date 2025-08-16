@@ -97,6 +97,7 @@ export const http = axios.create({
 左侧菜单会根据路由配置自动创建,
 路由配置位于`src/router/routes.ts`文件中
 `src/router/index.ts`文件内包含了登录界面、首页的路由以及路由守卫的配置。
+**路由权限**可以在`meta.roles`进行配置，如`roles:['admin','user']`代表角色`admin`和`user`可以访问此路由
 
 #### 创建一级路由
 
