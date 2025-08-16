@@ -8,7 +8,7 @@
             active-text-color="var(--menu-active-text-color)">
             <div v-for="(item, index) in menuList" :key="index">
                 <!-- 一级路由 -->
-                <el-menu-item v-if="!item.children && item.showLink" :index="item.index"
+                <el-menu-item v-if="!item.children && item.showLink && item.permission" :index="item.index"
                     @click="goPage(item.routerPath, item.index, item.label)">
                     <div class="menuItemBox">
                         <img v-if="item.icon" class="icon" :src="item.icon" alt="">
@@ -16,7 +16,7 @@
                     </div>
                 </el-menu-item>
                 <!-- 二级路由 -->
-                <el-sub-menu v-if="item.children && item.showLink" :index="item.index">
+                <el-sub-menu v-if="item.children && item.showLink && item.permission" :index="item.index">
                     <template #title>
                         <div class="menuItemBox">
                             <img v-if="item.icon" class="icon" :src="item.icon" alt="">
@@ -24,9 +24,11 @@
                         </div>
                     </template>
                     <div v-for="(j, index) in item.children" :key="index">
-                        <el-menu-item v-if="j.showLink" :index="`${item.index}-${j.index}`"
+                        <el-menu-item v-if="j.showLink && j.permission" :index="`${item.index}-${j.index}`"
                             @click="goPage(j.routerPath, j.index, j.label)">
-                            {{ j.label }}</el-menu-item>
+                            <img v-if="j.icon" class="icon" :src="j.icon" alt="">
+                            <span>{{ j.label }}</span>
+                        </el-menu-item>
                     </div>
                 </el-sub-menu>
             </div>
@@ -39,36 +41,43 @@ import { onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { routes } from '@/router';
 import type { MenuItem, RouteItem } from './types';
+import { useStore } from '@/store';
 
 const router = useRouter();
+const store = useStore();
 const emit = defineEmits(['updateActiveIndex']); //菜单修改
 
 //定义菜单列表
 const menuList = ref<Array<MenuItem>>([])
 const getMenuList = () => {
+    const user = store.getUser()
     routes.forEach((item: RouteItem) => {
         if (item.path !== '/' && item.path !== '/login') {
             let result: MenuItem = {
-                label: item.meta ? item.meta.title : '未命名路由',
+                label: item.meta?.title ?? '未命名路由',
                 index: String(menuList.value.length),
-                showLink: item.children && item.children.length > 1 && item.children.findIndex((i: any) => i.meta.showLink === true) === -1 ? false : true, //是否显示链接，如果没有设置则默认显示
-                icon: item.meta && item.meta.icon ? item.meta.icon : '', //图标
-                routerPath: item.path,
+                showLink: item.meta?.showLink || true,
+                icon: item.meta?.icon ?? '', //图标
+                permission: item.meta?.roles ? item.meta?.roles.includes(user.role) : true, //权限判断
+                routerPath: "",
             }
             if (item.children && item.children.length === 1) {
                 //创建一级路由
-                result.label = item.children[0].meta ? item.children[0].meta.title : '未命名一级路由';
+                result.label = item.children[0].meta?.title ?? '未命名一级路由';
                 result.index = String(menuList.value.length);
-                result.showLink = item.children[0].meta ? item.children[0].meta.showLink !== false : true; //是否显示链接，如果没有设置则默认显示
-                result.icon = item.meta && item.meta.icon ? item.meta.icon : '';
+                result.showLink = item.children[0].meta?.showLink ?? true; //是否显示链接，如果没有设置则默认显示
+                result.icon = item.children[0].meta?.icon ?? '';
+                result.permission = item.children[0].meta?.roles ? item.children[0].meta?.roles.includes(user.role) : true; //权限判断
                 result.routerPath = `${item.path}/${item.children[0].path}`;
             }
             if (item.children && item.children.length > 1) {
                 //创建二级路由
                 result.children = item.children.map((child: RouteItem, index) => ({
-                    label: child.meta ? child.meta.title : '未命名二级路由',
+                    label: child.meta?.title ?? '未命名二级路由',
                     index: String(index),
-                    showLink: child.meta ? child.meta.showLink !== false : true, //是否显示链接，如果没有设置则默认显示
+                    showLink: child.meta?.showLink ?? true, //是否显示链接，如果没有设置则默认显示
+                    icon: child.meta?.icon ?? '',
+                    permission: child.meta?.roles ? child.meta?.roles.includes(user.role) : result.permission, //权限判断
                     routerPath: `${item.path}/${child.path}`,
                 }));
             }
@@ -135,12 +144,12 @@ onMounted(() => {
         align-items: center;
         gap: 7px;
         font-size: 15px;
+    }
 
-        .icon {
-            width: 16px;
-            height: 16px;
-            color: red;
-        }
+    .icon {
+        width: 16px;
+        height: 16px;
+        color: red;
     }
 
 

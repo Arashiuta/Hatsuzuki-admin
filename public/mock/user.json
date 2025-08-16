@@ -5,7 +5,8 @@
         "name": "Hatsuzuki",
         "accessToken": "abc123xyz",
         "refreshToken": "xyz123abc",
-        "expiresIn": 3600
+        "expiresIn": 3600,
+        "role": "admin"
     },
     "message": "User data retrieved successfully",
     "success": true

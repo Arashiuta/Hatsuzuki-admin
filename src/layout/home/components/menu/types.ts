@@ -5,13 +5,16 @@ export interface MenuItem {
   index: string;
   routerPath: string;
   showLink?: boolean;
-  icon?: string; // 图标
+  permission?: boolean;
+  icon?: string;
   children?: childrenItem[];
 }
 export interface childrenItem {
   label: string;
   index: string;
   showLink?: boolean;
+  icon?: string;
+  permission?: boolean; // 权限
   routerPath: string;
 }
 
@@ -21,5 +24,11 @@ export interface RouteItem {
   name?: string;
   component?: Function | Component;
   children?: RouteItem[] | null;
-  meta?: { [key: string]: any };
+  meta?: {
+    title?: string; // 路由标题
+    showLink?: boolean; // 是否显示
+    icon?: string; // 图标地址
+    roles?: string[]; // 可以访问的角色权限 例['admin', 'user']
+    [key: string]: any;
+  };
 }

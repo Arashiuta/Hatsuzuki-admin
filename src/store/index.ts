@@ -6,7 +6,7 @@ interface StoreState {
   loginExpired: boolean; // 登录过期状态
 }
 
-export const useStore = defineStore("store", {
+export const useStore = defineStore("hz-store", {
   state: (): StoreState => ({
     user: null,
     pageProgress: 0,
