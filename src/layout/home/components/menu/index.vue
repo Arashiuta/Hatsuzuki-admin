@@ -51,6 +51,7 @@ const emit = defineEmits(['updateActiveIndex']); //菜单修改
 const menuList = ref<Array<MenuItem>>([])
 const getMenuList = () => {
     const user = store.getUser()
+    if (!user) return;
     routes.forEach((item: RouteItem) => {
         if (item.path !== '/' && item.path !== '/login') {
             let result: MenuItem = {
@@ -58,7 +59,7 @@ const getMenuList = () => {
                 index: String(menuList.value.length),
                 showLink: item.meta?.showLink || true,
                 icon: item.meta?.icon ?? '', //图标
-                permission: item.meta?.roles ? item.meta?.roles.includes(user.role) : true, //权限判断
+                permission: item.meta?.roles && user.role ? item.meta?.roles.includes(user.role) : true, //权限判断
                 routerPath: "",
             }
             if (item.children && item.children.length === 1) {
@@ -67,7 +68,7 @@ const getMenuList = () => {
                 result.index = String(menuList.value.length);
                 result.showLink = item.children[0].meta?.showLink ?? true; //是否显示链接，如果没有设置则默认显示
                 result.icon = item.children[0].meta?.icon ?? '';
-                result.permission = item.children[0].meta?.roles ? item.children[0].meta?.roles.includes(user.role) : true; //权限判断
+                result.permission = item.children[0].meta?.roles && user.role ? item.children[0].meta?.roles.includes(user.role) : true; //权限判断
                 result.routerPath = `${item.path}/${item.children[0].path}`;
             }
             if (item.children && item.children.length > 1) {
@@ -77,7 +78,7 @@ const getMenuList = () => {
                     index: String(index),
                     showLink: child.meta?.showLink ?? true, //是否显示链接，如果没有设置则默认显示
                     icon: child.meta?.icon ?? '',
-                    permission: child.meta?.roles ? child.meta?.roles.includes(user.role) : result.permission, //权限判断
+                    permission: child.meta?.roles && user.role ? child.meta?.roles.includes(user.role) : result.permission, //权限判断
                     routerPath: `${item.path}/${child.path}`,
                 }));
             }
