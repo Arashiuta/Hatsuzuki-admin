@@ -157,7 +157,7 @@ export const http = axios.create({
 ```
 
 #### 路由配置
-```
+```typescript
 interface RouteItem {
   path: string;
   redirect?: string;
