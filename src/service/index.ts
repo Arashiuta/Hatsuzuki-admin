@@ -33,7 +33,24 @@ http.interceptors.request.use(
 );
 
 let refreshing = false; // 用于标记是否正在刷新token
-let requests: ((token: string) => void)[] = []; // 用于存储需要重新请求的数组
+let requests: {
+  resolve: (value: any) => void;
+  reject: (reason?: any) => void;
+  request: any;
+}[] = []; // 用于存储需要重新请求的数组
+
+const flushRequests = (accessToken: string) => {
+  requests.forEach(({ resolve, request }) => {
+    request.headers.Authorization = `Bearer ${accessToken}`;
+    resolve(http(request));
+  });
+  requests = [];
+};
+
+const rejectRequests = (error: any) => {
+  requests.forEach(({ reject }) => reject(error));
+  requests = [];
+};
 
 http.interceptors.response.use(
   (response) => {
@@ -46,49 +63,61 @@ http.interceptors.response.use(
     const store = useStore();
     // token过期处理
     const originalRequest = error.config;
+    const isRefreshTokenRequest = originalRequest?.url?.includes("/refresh-token");
+
     if (
       error.response &&
       error.response.status === 401 &&
       originalRequest &&
-      !originalRequest._retry
+      !originalRequest._retry &&
+      !isRefreshTokenRequest
     ) {
       originalRequest._retry = true; // 标记请求已重试
       const refreshToken = getRefreshToken(); // 获取refreshToken
       if (!refreshToken) {
+        rejectRequests(error);
         gotoLoginPage(error);
         return Promise.reject(error);
       }
       if (!refreshing) {
         refreshing = true; // 设置正在刷新状态
-        const res: {
-          accessToken: string;
-          refreshToken: string;
-          expiresIn: number;
-          [key: string]: any;
-        } = await http.post("/refresh-token", {
-          refreshToken,
-        });
-        if ((res.code == 200 || res.success) && res.data) {
-          const { accessToken, refreshToken, expiresIn } = res.data;
-          setTokens(accessToken, refreshToken, expiresIn);
-          refreshing = false; // 重置刷新状态
+        try {
+          const res: {
+            accessToken: string;
+            refreshToken: string;
+            expiresIn: number;
+            [key: string]: any;
+          } = await http.post("/refresh-token", {
+            refreshToken,
+          });
+          if ((res.code == 200 || res.success) && res.data) {
+            const { accessToken, refreshToken, expiresIn } = res.data;
+            setTokens(accessToken, refreshToken, expiresIn);
 
-          //重新发起当前失败的请求
-          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-          requests.forEach((cb) => cb(accessToken)); // 执行所有存储
-          requests = []; // 清空请求队列
-          return http(originalRequest); // 重新发送原始请求
-        } else {
+            //重新发起当前失败的请求
+            originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+            flushRequests(accessToken); // 执行所有存储
+            return http(originalRequest); // 重新发送原始请求
+          }
+
           //刷新token失败
+          rejectRequests(error);
           gotoLoginPage(error);
           return Promise.reject(error);
+        } catch (refreshError) {
+          rejectRequests(refreshError);
+          gotoLoginPage(refreshError);
+          return Promise.reject(refreshError);
+        } finally {
+          refreshing = false; // 无论成功失败，都重置刷新状态
         }
       } else {
         // 如果正在刷新token，将当前请求添加到请求队列
-        return new Promise((resolve) => {
-          requests.push((token: string) => {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
-            resolve(http(originalRequest));
+        return new Promise((resolve, reject) => {
+          requests.push({
+            resolve,
+            reject,
+            request: originalRequest,
           });
         });
       }
