@@ -19,6 +19,8 @@
                     </el-icon>
                     <span>搜索</span>
                 </hz-button>
+                <!-- 更多按钮 -->
+                <slot name="button"></slot>
             </div>
         </div>
         <!-- 主体 -->
