@@ -49,6 +49,7 @@ router.beforeEach((to, from, next) => {
   if (to.path !== "/login" && !user) {
     ElMessage.error("用户未登录");
     next("/login");
+    return;
   }
   //判断跳转权限
   let roles: string[] = [];
@@ -64,3 +65,4 @@ router.beforeEach((to, from, next) => {
   }
   next();
 });
+
