@@ -415,6 +415,7 @@ const handlePageChange = (currentPage: number, pageSize: number) => {
 | `screen`    | 用于放置筛选条件的表单项，例如 `el-input`、`el-select` 等。 |
 | `operation` | 可选。如果使用此插槽，将替换掉默认的搜索、重置和筛选区域，用于自定义操作栏。 |
 | `footer`    | 可选。用于放置表格下方的自定义内容，如批量操作按钮等。     |
+| `button`    | 可选。用于添加操作栏右侧功能按钮。     |
 
 #### 使用示例
 
