@@ -1,0 +1,16 @@
+import defaultAvatar from "../src/assets/head/head.jpg";
+
+export const userMockData = {
+  code: 200,
+  data: {
+    id: 1,
+    name: "Hatsuzuki",
+    avatar: defaultAvatar,
+    accessToken: "abc123xyz",
+    refreshToken: "xyz123abc",
+    expiresIn: 3600,
+    role: "admin",
+  },
+  message: "User data retrieved successfully",
+  success: true,
+};

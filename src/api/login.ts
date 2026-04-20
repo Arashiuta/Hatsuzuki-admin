@@ -1,8 +1,8 @@
-import { http } from "@/service/index.ts";
 import type { LoginParam } from "./types/login.ts";
+import { userMockData } from "../../mock/user";
 
 export const loginApi = {
-  login: (data: LoginParam) => {
-    return http.get("/mock/user.json");
+  login: (_data: LoginParam) => {
+    return Promise.resolve(userMockData);
   },
 };

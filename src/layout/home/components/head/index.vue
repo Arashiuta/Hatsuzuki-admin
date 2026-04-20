@@ -10,7 +10,7 @@
             </div>
             <el-dropdown trigger="click">
                 <div class="headBox">
-                    <img style="width: 30px;height:30px;border-radius: 50%;" src="@/assets/head/head.jpg" alt="">
+                    <img class="avatar" :src="store.user?.avatar || defaultAvatar" alt="用户头像">
                     <span>{{ store.user?.name ? store.user?.name : 'Hatsuzuki' }}</span>
                     <el-icon>
                         <ArrowDown />
@@ -36,6 +36,7 @@ import { ElMessage } from 'element-plus';
 import ThemeDRawer from './components/themeDrawer/index.vue';
 import { ref } from 'vue';
 import { removeTokens } from '@/utils/tokenUtils';
+import defaultAvatar from '@/assets/head/head.jpg';
 
 const store = useStore();
 const router = useRouter();
@@ -108,6 +109,13 @@ const openThemeDrawerFunc = () => {
             padding: 5px 10px;
             border-radius: 6px;
             transition: all 0.3s ease;
+
+            .avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
 
             &:hover {
                 background-color: var(--header-hover-background-color);
