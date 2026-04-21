@@ -6,7 +6,7 @@
         <el-menu ref="menuRef" default-active="2" class="el-menu-vertical-demo"
             background-color="var(--menu-background-color)" text-color="var(--menu-text-color)"
             active-text-color="var(--menu-active-text-color)">
-            <div v-for="(item, index) in menuList" :key="index">
+            <template v-for="(item, index) in menuList" :key="index">
                 <!-- 一级路由 -->
                 <el-menu-item v-if="!item.children && item.showLink && item.permission" :index="item.index"
                     @click="goPage(item.routerPath, item.index, item.label)">
@@ -23,15 +23,15 @@
                             <span>{{ item.label }}</span>
                         </div>
                     </template>
-                    <div v-for="(j, index) in item.children" :key="index">
+                    <template v-for="(j, index) in item.children" :key="index">
                         <el-menu-item v-if="j.showLink && j.permission" :index="`${item.index}-${j.index}`"
                             @click="goPage(j.routerPath, j.index, j.label)">
                             <img v-if="j.icon" class="icon" :src="j.icon" alt="">
                             <span>{{ j.label }}</span>
                         </el-menu-item>
-                    </div>
+                    </template>
                 </el-sub-menu>
-            </div>
+            </template>
         </el-menu>
     </div>
 </template>
