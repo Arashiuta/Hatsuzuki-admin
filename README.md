@@ -50,8 +50,6 @@ npm run dev
 │   ├── style.css           # 全局样式文件
 │   └── vite-env.d.ts       # Vite 相关的 TypeScript 类型声明
 ├── .env                    # 默认环境变量配置文件
-├── .env.development        # 开发环境环境变量配置文件
-├── .env.production         # 生产环境环境变量配置文件
 ├── .gitignore              # Git 版本控制忽略文件
 ├── auto-imports.d.ts       # Volar 或 Unplugin-auto-import 自动导入的类型声明
 ├── components.d.ts         # Volar 或 Unplugin-vue-components 自动导入的组件类型声明
@@ -67,7 +65,7 @@ npm run dev
 
 ### 环境变量
 
-项目使用`.env`文件来管理环境变量`.env.development`和`.env.production`分别对应开发环境和生产环境的变量，`VITE_BASE_API`变量用来对接口请求进行代理，在`vite.config.ts`文件里面修改代理地址：
+项目使用统一的`.env`文件来管理环境变量，`VITE_BASE_API`变量用来对接口请求进行代理，在`vite.config.ts`文件里面修改代理地址：
 
 ```typescript
 server: {
