@@ -44,15 +44,14 @@
 
 ## 🧰 技术栈
 
-- **Vue 3.5**（Composition API）
-- **Vite 7**
-- **TypeScript 5**
-- **Vue Router 4**
-- **Pinia 3**
-- **Element Plus 2**
-- **Axios 1**
-- **ECharts 5**
-- **pdfjs-dist 5**
+- **Vue 3**（Composition API）
+- **Vite**
+- **TypeScript**
+- **Vue Router**
+- **Pinia**
+- **Element Plus**
+- **Axios**
+- **ECharts**
 
 ---
 
