@@ -96,13 +96,13 @@ const getMenuIndex = () => {
             item.children.forEach((j) => {
                 if (path === j.routerPath) {
                     menuRef.value.updateActiveIndex(`${item.index}-${j.index}`);
-                    goPage(j.routerPath, `${item.index}-${j.index}`, j.label);
+                    emit('updateActiveIndex', { pageIndex: `${item.index}-${j.index}`, pageTitle: j.label });
                 }
             });
         } else {
             if (path === item.routerPath) {
                 menuRef.value.updateActiveIndex(item.index);
-                goPage(item.routerPath, item.index, item.label);
+                emit('updateActiveIndex', { pageIndex: item.index, pageTitle: item.label });
             }
         }
     })
